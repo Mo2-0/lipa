@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col justify-center px-6 py-16">
@@ -11,9 +13,14 @@ export default function HomePage() {
         Invoice in USD/EUR, receive instant UGX to MTN or Airtel Mobile Money —
         with KYC and tax paperwork handled for you.
       </p>
-      <p className="mt-8 text-sm text-neutral-500">
-        Phase 1 scaffold ready. KYC registration coming next.
-      </p>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link
+          href="/register"
+          className="rounded-xl bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white hover:bg-[#0a6340]"
+        >
+          Register & verify KYC
+        </Link>
+      </div>
     </main>
   );
 }
