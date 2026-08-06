@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useRouter } from "next/navigation";
 import type { MobileNetwork, RegisterKycResponse, UserProfile } from "@/types";
+import { setSession } from "@/lib/auth";
 
 const initialForm = {
   fullName: "",
@@ -14,6 +16,7 @@ const initialForm = {
 };
 
 export function KycRegistrationForm() {
+  const router = useRouter();
   const [form, setForm] = useState(initialForm);
   const [fileLabel, setFileLabel] = useState("");
   const [loading, setLoading] = useState(false);
@@ -59,7 +62,9 @@ export function KycRegistrationForm() {
         return;
       }
 
+      setSession(data.user);
       setUser(data.user);
+      setTimeout(() => router.push("/dashboard"), 1500);
     } catch {
       setError("Network error. Please try again.");
     } finally {
